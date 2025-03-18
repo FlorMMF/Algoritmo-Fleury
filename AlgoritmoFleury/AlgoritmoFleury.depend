@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1742316179 source:c:\users\surface\documents\estructura de datos\aplicaciongrafica\algoritmofleury\grafica.cpp
+	"Grafica.hpp"
+	<iostream>
+
+1741975290 c:\users\surface\documents\estructura de datos\aplicaciongrafica\algoritmofleury\grafica.hpp
+	"Nodo.hpp"
+
+1741975586 c:\users\surface\documents\estructura de datos\aplicaciongrafica\algoritmofleury\nodo.hpp
+	"Arista.hpp"
+
+1742090401 c:\users\surface\documents\estructura de datos\aplicaciongrafica\algoritmofleury\arista.hpp
+
+1742314540 source:c:\users\surface\documents\estructura de datos\aplicaciongrafica\algoritmofleury\nodo.cpp
+	"Nodo.hpp"
+	<iostream>
+
