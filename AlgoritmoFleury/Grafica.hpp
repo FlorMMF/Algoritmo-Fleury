@@ -1,10 +1,10 @@
 #ifndef GRAFICA_HPP_INCLUDED
 #define GRAFICA_HPP_INCLUDED
-
+#include <string>
 #include "Nodo.hpp"
 
 class Grafica{
-
+friend std::string AlgoritmoFleury(const Grafica &g);
 public:
     Grafica();
     Grafica(const Grafica &g);
@@ -34,6 +34,8 @@ public:
     void Vaciar(char nom);
     //Vaciar grafica
     void Vaciar();
+    //Obtener el nombre del primer nodo
+    char ObtenerPrimero() const;
 
 private:
     Nodo *primero, *ultimo;

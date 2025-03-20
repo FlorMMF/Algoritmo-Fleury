@@ -90,3 +90,8 @@ void Pila<Tipo>::imprimir() const{
 
 
 }
+
+template <typename Tipo>
+int Pila<Tipo>::CantidadElementos() const{
+    return numElem;
+}

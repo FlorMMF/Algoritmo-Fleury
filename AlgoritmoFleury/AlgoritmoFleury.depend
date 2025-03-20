@@ -15,3 +15,38 @@
 	"Nodo.hpp"
 	<iostream>
 
+1742444541 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\grafica.cpp
+	"Grafica.hpp"
+	"Cola.hpp"
+	"LaPila.hpp"
+	<iostream>
+
+1742434680 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\grafica.hpp
+	<string>
+	"Nodo.hpp"
+
+1742344996 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\nodo.hpp
+	"Arista.hpp"
+
+1742344996 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\arista.hpp
+
+1742344996 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\nodo.cpp
+	"Nodo.hpp"
+	<iostream>
+
+1742444562 source:c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\main.cpp
+	<iostream>
+	"Grafica.hpp"
+
+1742444407 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\lapila.hpp
+	"LaPila.tpp"
+
+1742444407 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\lapila.tpp
+	<iostream>
+
+1742344996 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\cola.hpp
+	"Cola.tpp"
+
+1742344996 c:\users\dell\documents\flor\lcc\cuarto semestre\estructuradatos\algoritmo-fleury\algoritmofleury\cola.tpp
+	<iostream>
+

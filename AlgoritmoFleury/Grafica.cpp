@@ -1,4 +1,6 @@
 #include "Grafica.hpp"
+#include "Cola.hpp"
+#include "LaPila.hpp"
 #include <iostream>
 Grafica::Grafica():primero(nullptr), ultimo(nullptr), numNodos(0),
     numAristas(0){}
@@ -157,3 +159,50 @@ Nodo * Grafica::buscarDireccion(char nom, Nodo **ant) const{
     }
     return aux;
 }
+
+char Grafica::ObtenerPrimero() const{
+    return primero -> nombre;
+}
+
+std::string AlgoritmoFleury(const Grafica &g){
+    Pila<char> pila;
+    Cola<char> cola;
+    Grafica copia;
+    char nodoCola = copia.ObtenerPrimero(), nodoPila = copia.ObtenerPrimero();
+    pila.Apilar(nodoCola);
+    cola.Encolar(nodoCola);
+
+    Nodo * v_c = copia.primero;
+    Nodo * v_p = copia.primero;
+
+    std::string paseo = "";
+
+    while ( (copia.ObtenerGrado(nodoCola) != 0) && (copia.ObtenerGrado(nodoPila) != 0)){
+        //primer paso
+        if(copia.ObtenerGrado(v_c -> siguiente -> nombre) > 1){
+            v_c = v_c -> siguiente;
+            copia.Eliminar(copia.ObtenerPrimero());
+            nodoCola = copia.ObtenerPrimero();
+            cola.Encolar(nodoCola);
+        }
+        //segundo paso
+        if(copia.ObtenerGrado(nodoPila) == 1){
+            v_p = v_p -> siguiente;
+            copia.Eliminar(v_p -> nombre);
+            nodoPila = v_p -> nombre;
+            pila.Apilar(nodoPila);
+        }
+    }
+
+    while(cola.CantidadElementos() != 0){
+        paseo = paseo + cola.ObtenerPrimero();
+        cola.Desencolar();
+    }
+    while(pila.CantidadElementos() != 0){
+        paseo = paseo + pila.ObtenerTOPE();
+        pila.Desapilar();
+    }
+
+    return paseo;
+}
+

@@ -21,6 +21,8 @@ public:
     void Vaciar();
     //para pruebas
     void imprimir() const;
+
+    int CantidadElementos() const;
 private:
     int numElem;
     struct Elemento{
