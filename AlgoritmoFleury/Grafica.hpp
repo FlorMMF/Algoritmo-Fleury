@@ -34,8 +34,6 @@ public:
     void Vaciar(char nom);
     //Vaciar grafica
     void Vaciar();
-    //Obtener el nombre del primer nodo
-    char ObtenerPrimero() const;
 
 private:
     Nodo *primero, *ultimo;

@@ -132,6 +132,7 @@ void Grafica::Imprimir() const{
         std::cout << std::endl;
         visitado = visitado -> siguiente;
     }
+    std::cout << std::endl;
 }
 
 //Vaciar nodo
@@ -160,35 +161,36 @@ Nodo * Grafica::buscarDireccion(char nom, Nodo **ant) const{
     return aux;
 }
 
-char Grafica::ObtenerPrimero() const{
-    return primero -> nombre;
-}
-
 std::string AlgoritmoFleury(const Grafica &g){
     Pila<char> pila;
     Cola<char> cola;
-    Grafica copia;
-    char nodoCola = copia.ObtenerPrimero(), nodoPila = copia.ObtenerPrimero();
+
+    Grafica copia = g;
+
+    char nodoCola = g.primero -> nombre , nodoPila = g.primero -> nombre;
     pila.Apilar(nodoCola);
     cola.Encolar(nodoCola);
 
     Nodo * v_c = copia.primero;
     Nodo * v_p = copia.primero;
-
+    Nodo * porBorrar;
     std::string paseo = "";
 
     while ( (copia.ObtenerGrado(nodoCola) != 0) && (copia.ObtenerGrado(nodoPila) != 0)){
+        copia.Imprimir();
         //primer paso
         if(copia.ObtenerGrado(v_c -> siguiente -> nombre) > 1){
+            porBorrar = v_c;
             v_c = v_c -> siguiente;
-            copia.Eliminar(copia.ObtenerPrimero());
-            nodoCola = copia.ObtenerPrimero();
+            copia.Eliminar(porBorrar -> nombre, v_c -> nombre);
+            nodoCola = v_c -> nombre;
             cola.Encolar(nodoCola);
         }
         //segundo paso
         if(copia.ObtenerGrado(nodoPila) == 1){
+            porBorrar = v_p;
             v_p = v_p -> siguiente;
-            copia.Eliminar(v_p -> nombre);
+            copia.Eliminar(porBorrar  -> nombre,v_p -> nombre);
             nodoPila = v_p -> nombre;
             pila.Apilar(nodoPila);
         }
