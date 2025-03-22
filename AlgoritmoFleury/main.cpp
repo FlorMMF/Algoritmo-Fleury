@@ -6,8 +6,10 @@ using namespace std;
 int main()
 {
     try{
-        //ejemplo para las pruebas
         Grafica g;
+        //ejemplo para las pruebas
+        /*
+
 
         g.Agregar('a');
         g.Agregar('b');
@@ -26,7 +28,27 @@ int main()
         g.Agregar('c', 'd');
         g.Agregar('d', 'e');
 
-        g.Imprimir();
+        */
+        g.Agregar('a');
+        g.Agregar('b');
+        g.Agregar('c');
+        g.Agregar('d');
+        g.Agregar('e');
+        g.Agregar('f');
+        g.Agregar('g');
+
+        g.Agregar('a','f');
+        g.Agregar('a','b');
+        g.Agregar('b','f');
+        g.Agregar('b','c');
+        g.Agregar('b','g');
+        g.Agregar('c','d');
+        g.Agregar('c','e');
+        g.Agregar('c','g');
+        g.Agregar('d','e');
+        g.Agregar('g','e');
+        g.Agregar('g','f');
+        g.Agregar('e','f');
 
         cout << endl << AlgoritmoFleury(g) << endl;
     }catch(const char * mensaje){

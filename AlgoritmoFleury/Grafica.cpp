@@ -167,35 +167,36 @@ std::string AlgoritmoFleury(const Grafica &g){
 
     Grafica copia = g;
 
-    char nodoCola = g.primero -> nombre , nodoPila = g.primero -> nombre;
-    pila.Apilar(nodoCola);
-    cola.Encolar(nodoCola);
+    Nodo *v_c = g.buscarDireccion(g.primero -> nombre);
+    Nodo *v_p = g.buscarDireccion(g.primero -> nombre);
 
-    Nodo * v_c = copia.primero;
-    Nodo * v_p = copia.primero;
-    Nodo * porBorrar;
+    cola.Encolar(v_c -> nombre);
+    pila.Apilar(v_p -> nombre);
     std::string paseo = "";
-
-    while ( (copia.ObtenerGrado(nodoCola) != 0) && (copia.ObtenerGrado(nodoPila) != 0)){
+    while(copia.ObtenerNumAristas() != 0){
         copia.Imprimir();
-        //primer paso
-        if(copia.ObtenerGrado(v_c -> siguiente -> nombre) > 1){
-            porBorrar = v_c;
-            v_c = v_c -> siguiente;
-            copia.Eliminar(porBorrar -> nombre, v_c -> nombre);
-            nodoCola = v_c -> nombre;
-            cola.Encolar(nodoCola);
-        }
-        //segundo paso
-        if(copia.ObtenerGrado(nodoPila) == 1){
-            porBorrar = v_p;
-            v_p = v_p -> siguiente;
-            copia.Eliminar(porBorrar  -> nombre,v_p -> nombre);
-            nodoPila = v_p -> nombre;
-            pila.Apilar(nodoPila);
-        }
-    }
+        if(v_c -> grado != 0){
+            Arista *AriC=v_c->primera;
+            Nodo *NodoC=AriC->adyacente;
 
+            while(NodoC->grado<=1){
+                AriC=AriC->siguiente;
+                NodoC=AriC->adyacente;
+
+            }
+            copia.Eliminar(v_c -> nombre, NodoC -> nombre);
+            cola.Encolar(NodoC -> nombre);
+            v_c = NodoC;
+        }
+
+        if(v_p -> grado == 1){
+            Nodo *k = v_p->primera->adyacente;
+            copia.Eliminar(v_p->nombre, k->nombre);
+            pila.Apilar(k -> nombre);
+            v_p=k;
+        }
+
+    }
     while(cola.CantidadElementos() != 0){
         paseo = paseo + cola.ObtenerPrimero();
         cola.Desencolar();
@@ -204,7 +205,6 @@ std::string AlgoritmoFleury(const Grafica &g){
         paseo = paseo + pila.ObtenerTOPE();
         pila.Desapilar();
     }
-
     return paseo;
 }
 
