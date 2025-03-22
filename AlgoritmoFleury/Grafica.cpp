@@ -162,7 +162,8 @@ Nodo * Grafica::buscarDireccion(char nom, Nodo **ant) const{
 }
 
 std::string AlgoritmoFleury(const Grafica &g){
-    Pila<char> pila;
+    std::string paseo = "";
+    /*Pila<char> pila;
     Cola<char> cola;
 
     Grafica copia = g;
@@ -172,18 +173,19 @@ std::string AlgoritmoFleury(const Grafica &g){
 
     cola.Encolar(v_c -> nombre);
     pila.Apilar(v_p -> nombre);
-    std::string paseo = "";
-    while(copia.ObtenerNumAristas() != 0){
+
+    while(v_c->grado!=0 && v_p->grado!=0){
         copia.Imprimir();
-        if(v_c -> grado != 0){
+        if(v_c->grado >= 1 ){
             Arista *AriC=v_c->primera;
             Nodo *NodoC=AriC->adyacente;
 
-            while(NodoC->grado<=1){
+            while(NodoC->grado == 1){
                 AriC=AriC->siguiente;
                 NodoC=AriC->adyacente;
 
             }
+            if(AriC == nullptr || NodoC == nullptr)continue;
             copia.Eliminar(v_c -> nombre, NodoC -> nombre);
             cola.Encolar(NodoC -> nombre);
             v_c = NodoC;
@@ -197,13 +199,52 @@ std::string AlgoritmoFleury(const Grafica &g){
         }
 
     }
-    while(cola.CantidadElementos() != 0){
-        paseo = paseo + cola.ObtenerPrimero();
-        cola.Desencolar();
+    */
+     Grafica copia=g;
+
+    Cola<Nodo*> recorrido;
+    Pila<Nodo*> principal;
+    Nodo *v_c = copia.buscarDireccion(copia.primero -> nombre); //nodo que maneja la cola
+    Nodo *v_p = copia.buscarDireccion(copia.primero -> nombre); //nodo que maneja la pila
+
+    recorrido.Encolar(v_c);
+    principal.Apilar(v_p);
+
+
+    while(v_c->grado!=0 && v_p->grado!=0){
+        copia.Imprimir();
+        if(v_c->grado!=0 && v_p->grado!=1){
+            Arista *AriC=v_c->primera;
+            Nodo *NodoC=AriC->adyacente;
+
+            while(NodoC->grado<=1){
+                AriC=AriC->siguiente;
+                NodoC=AriC->adyacente;
+            }
+
+            copia.Eliminar(v_c->nombre, NodoC->nombre);
+            recorrido.Encolar(NodoC);
+            v_c=NodoC;
+        }
+
+        if(v_p->grado==1){
+            Nodo *NodoP = v_p->primera->adyacente;
+            copia.Eliminar(v_p->nombre, NodoP->nombre);
+            principal.Apilar(NodoP);
+            v_p=NodoP;
+        }
     }
-    while(pila.CantidadElementos() != 0){
-        paseo = paseo + pila.ObtenerTOPE();
-        pila.Desapilar();
+
+
+
+
+    while(recorrido.CantidadElementos() != 0){
+        paseo = paseo + recorrido.ObtenerPrimero() -> nombre;
+        recorrido.Desencolar();
+    }
+    while(principal.CantidadElementos() != 0){
+        paseo = paseo + principal.ObtenerTOPE() -> nombre;
+        principal.Desapilar();
     }
     return paseo;
 }
