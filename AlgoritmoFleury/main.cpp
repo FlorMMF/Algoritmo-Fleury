@@ -1,37 +1,51 @@
 #include <iostream>
 #include "Grafica.hpp"
 using namespace std;
+/**
 
+ * \file main.hpp
+
+ * \author Flor Machado y Elias Peregrina
+
+ * \date 23/3/2025
+
+ */
+/** \brief M&eacute;todo para comprobar si hay un paseo de euler en una gr&aacute;fica
+ *
+ * \param g const Grafica&
+ * \return bool
+ *
+ */
 bool esEuler(const Grafica &g);
 
 int main(){
     try{
         Grafica g;
         int numNod, numAris;
-        
+
         cout << "Ingrese al n\243mero de nodos: ";
         cin >> numNod;
-        
+
         for (int i = 0; i < numNod; ++i){
             char nodo;
             cout << "Ingresa el nombre del nodo " << i + 1 << ": ";
             cin >> nodo;
             g.Agregar(nodo);
         }
-        
+
         cout << "Ingresa el n\243mero de aristas: ";
         cin >> numAris;
-        
+
         for (int i = 0; i < numAris; ++i){
             char inicial, final;
             cout << "Ingresa la arista: " << i + 1 << " entre dos nodos separados por un espacio: ";
             cin >> inicial >> final;
             g.Agregar(inicial, final);
         }
-        
+
         cout << "La gr\240fica ingresada es: \n";
         g.Imprimir();
-        
+
         if (esEuler(g)){
             cout << "La gr\240fica es Eulariana, por lo que se ejecutar\240 el algoritmo de Fleury. \n";
             cout << "Paseo Eulariano: " << AlgoritmoFleury(g) << endl;
